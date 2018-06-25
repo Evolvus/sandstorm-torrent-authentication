@@ -27,6 +27,11 @@ cd sandstorm-torrent-authentication
 
 ## Step 1: goto authentication-request-service
 <code>cd authentication-request-service && npm install</code><br/>
+Here we use environment variable called 'QUEUE' to check authentication again different implementations
+Possible values of QUEUE are 
+
+
+
 <code>npm start</code><br/>
 This should start and listen to 3001,it will connect to Kafka
 
@@ -41,9 +46,15 @@ From user interface you can hit /authenticate request with credentials in body</
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:3001/authenticate --data '{
 "userName":"shrimank",
 "userPassword":"test@123",
-"application":"FLUX_CODE"
+"application":"FLUX_CODE",
+  "authType":"mongo"
 }'
 </code>
+ Here 'authType' possible implementations ldap,mongo & custom.
+ Routes Credentials to based on authType value
+  'mongo': 'topic.authentication.request.mongo'
+  'ldap': 'topic.authentication.request.ldap'
+  'custom': 'topic.authentication.request.custom'
 
 ## How it works :
 1.Send user credentials to '/authenticate',request<br/>

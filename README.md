@@ -47,14 +47,17 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:3001/authen
 "userName":"shrimank",
 "userPassword":"test@123",
 "application":"FLUX_CODE",
-  "authType":"mongo"
+ "authType":"mongo"
 }'
-</code>
+</code><br/>
+<br/>
  Here 'authType' possible implementations ldap,mongo & custom.
- Routes Credentials to based on authType value
-  'mongo': 'topic.authentication.request.mongo'
-  'ldap': 'topic.authentication.request.ldap'
-  'custom': 'topic.authentication.request.custom'
+ Routes Credentials to based on authType value<br/><br/>
+  <code>
+  'mongo': 'topic.authentication.request.mongo'<br/>
+  'ldap': 'topic.authentication.request.ldap'<br/>
+  'custom': 'topic.authentication.request.custom'<br/>
+  </code>
 
 ## How it works :
 1.Send user credentials to '/authenticate',request<br/>

@@ -4,16 +4,17 @@ const PORT = process.env.PORT || 3001;
 var app = express();
 var bodyParser = require('body-parser');
 var router = express.Router();
-
+const KAFKA_BROKERS = process.env.KAFKA_BROKERS || 'localhost:9092';
 
 var figlet = require('figlet');
 
 var kafka = require('kafka-node'),
     Producer = kafka.Producer,
-    client = new kafka.Client(),
+    client = new kafka.KafkaClient({ kafkaHost: KAFKA_BROKERS }),
     Consumer = kafka.Consumer,
     KeyedMessage = kafka.KeyedMessage,
     producer = new Producer(client);
+
 const topicRequest = 'topic.authentication.request';
 const topicResponse = 'topic.authentication.response';
 
@@ -22,7 +23,7 @@ router.use(bodyParser.json());
 app.use(router);
 app.listen(PORT, () => {
     console.log(`Authentication Service is Up and listening on port [${PORT}]`);
-    console.log('kafka is connecting...');
+    console.log(`kafka is connecting...${KAFKA_BROKERS}`);
     console.log('You will see [Kafka Connected] message.');
 });
 

@@ -1,0 +1,29 @@
+{
+    "name": "authentication-response-service",
+    "version": "0.0.1",
+    "description": "    ",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+	"start":"node server"
+    },
+    "keywords": [
+        "evolvus-authentication"
+    ],
+    "author": "Shriman Nijagun",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "evolvus-application": "^0.1.1",
+        "evolvus-entity": "0.0.6",
+        "evolvus-role": "^0.1.2",
+        "evolvus-user": "0.0.6",
+        "express": "^4.16.3",
+        "figlet": "^1.2.0",
+        "kafka-node": "^2.6.1",
+        "mongoose": "^5.1.6"
+    },
+    "publishConfig": {
+        "registry": "http://10.10.69.203:8081/repository/npm-private/"
+    }
+}

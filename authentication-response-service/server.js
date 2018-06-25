@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var mongoose = require('mongoose');
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/sandstormDB';
-
+const KAFKA_BROKERS = process.env.KAFKA_BROKERS || 'localhost:9092';
 mongoose.connect(MONGO_URL);
 
 
@@ -16,7 +16,7 @@ console.log('USER is ', User);
 
 var kafka = require('kafka-node'),
     Producer = kafka.Producer,
-    client = new kafka.Client(),
+    client = new kafka.KafkaClient({ kafkaHost: KAFKA_BROKERS }),
     Consumer = kafka.Consumer,
     KeyedMessage = kafka.KeyedMessage,
     producer = new Producer(client);
@@ -28,7 +28,8 @@ router.use(bodyParser.json());
 app.use(router);
 app.listen(PORT, () => {
     console.log(`Authentication Service is Up and listening on port [${PORT}]`);
-    console.log('kafka is connecting...You will see [Kafka Connected] message.');
+    console.log(`kafka is connecting...${KAFKA_BROKERS}`);
+    console.log('You will see [Kafka Connected] message.');
 });
 figlet('-: Authentication :-', function(err, data) {
     if (err) {

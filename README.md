@@ -38,6 +38,8 @@ Possible values of QUEUE are
 This should start and listen to 3001,it will connect to Kafka
 
 ## Step 2:goto authentication-response-service
+This is the mongo authentication implementation.<br/>
+*NOTE*:ldap implementation is on road-map.<br/>
 <code> cd authentication-response-service && npm i </code><br/>
 <code> npm start </code><br/>
 This should start and listen to 3002,it will connect to Kafka.<br/>

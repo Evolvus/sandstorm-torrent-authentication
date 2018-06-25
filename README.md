@@ -11,7 +11,9 @@ Default KAFKA_BROKERS value is localhost:9092<br/>
 Default MONGO_URL value is mongodb://localhost:27017/SandstormDb</br>
 
 ## Create '2 Topics' in Kafka
-topic.authentication.request<br/>
+topic.authentication.request.mongo<br/>
+topic.authentication.request.ldap<br/>
+topic.authentication.request.custom<br/>
 topic.authentication.response
 
 <br/><code>
@@ -52,10 +54,12 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:3001/authen
 </code><br/>
 <br/>
  Here 'authType' possible implementations ldap,mongo & custom.
- Routes Credentials to based on authType value<br/><br/>
+ produces/pushes credentials based on authType value <br/><br/>
   <code>
   'mongo': 'topic.authentication.request.mongo'<br/>
+ 
   'ldap': 'topic.authentication.request.ldap'<br/>
+  
   'custom': 'topic.authentication.request.custom'<br/>
   </code>
 
